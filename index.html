@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTC ticker</title>
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div id="price">
+
+</div>
+</body>
+<script>
+    window.onload = async () => {
+        let someData = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT")
+        .then(r=>r.json())
+        .then(data => {
+            document.getElementById('price').innerHTML = parseInt(data.price);
+        });
+    };
+</script>
+</html>
